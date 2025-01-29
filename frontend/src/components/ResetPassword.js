@@ -18,7 +18,7 @@ const ResetPassword = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/reset-password', { token, newPassword });
+      await axios.post('https://password-hash-inic.onrender.com/api/reset-password', { token, newPassword });
       setMessage('Password reset successfully');
       setTimeout(() => navigate('/login'), 3000);
     } catch (err) {

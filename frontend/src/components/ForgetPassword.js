@@ -9,7 +9,7 @@ function ForgetPassword(){
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/request-reset', { email });
+      await axios.post('https://password-hash-inic.onrender.com/api/request-reset', { email });
       setMessage('Reset email sent! Check your inbox.');
     } catch (err) {
       
