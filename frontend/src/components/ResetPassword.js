@@ -10,6 +10,7 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [reenterPassword, setReenterPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,17 +18,21 @@ const ResetPassword = () => {
       setMessage('Passwords do not match');
       return;
     }
+    setLoading(true);
+    setMessage('');
     try {
-      await axios.post('https://password-hash-inic.onrender.com/api/reset-password', { token, newPassword });
+      await axios.post('http://localhost:5000/api/reset-password', { token, newPassword });
       setMessage('Password reset successfully');
       setTimeout(() => navigate('/login'), 3000);
     } catch (err) {
-      setMessage('Error resetting password');
+      setMessage(err.response?.data?.message || 'Error resetting password');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container ">
+    <div className="container">
       <h3>Reset Password</h3>
       <form onSubmit={handleSubmit}>
         <div className="form">
@@ -38,6 +43,7 @@ const ResetPassword = () => {
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
+            autoComplete="new-password"
           />
         </div>
         <div className="form">
@@ -48,9 +54,12 @@ const ResetPassword = () => {
             value={reenterPassword}
             onChange={(e) => setReenterPassword(e.target.value)}
             required
+            autoComplete="new-password"
           />
         </div>
-        <button type="submit">Reset Password</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Resetting...' : 'Reset Password'}
+        </button>
       </form>
       {message && <p>{message}</p>}
     </div>
