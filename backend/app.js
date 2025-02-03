@@ -12,7 +12,7 @@ app.use(express.json());
 
 connectDB();
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://password-hash-guvii.netlify.app/',
 }))
 
 app.use("/api", authRoutes);
