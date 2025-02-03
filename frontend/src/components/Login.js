@@ -15,7 +15,7 @@ function Login() {
         setError('');
 
         try {
-            const response = await axios.post('https://password-hash-1.onrender.com/api/login', { email, password });
+            const response = await axios.post('https://password-hash-ev15.onrender.com/api/login', { email, password });
             console.log('Login successful', response.data);
         } catch (err) {
             setError(err.response?.data?.message || 'Something went wrong');

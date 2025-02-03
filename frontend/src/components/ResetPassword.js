@@ -21,7 +21,7 @@ const ResetPassword = () => {
     setLoading(true);
     setMessage('');
     try {
-      await axios.post('https://password-hash-1.onrender.com/api/reset-password', { token, newPassword });
+      await axios.post('https://password-hash-ev15.onrender.com/api/reset-password', { token, newPassword });
       setMessage('Password reset successfully');
       setTimeout(() => navigate('/login'), 3000);
     } catch (err) {
