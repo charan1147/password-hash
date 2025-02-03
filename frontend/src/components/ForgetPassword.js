@@ -13,7 +13,7 @@ function ForgetPassword() {
     setMessage('');
 
     try {
-      await axios.post('http://localhost:5000/api/request-reset', { email });
+      await axios.post('https://password-hash-1.onrender.com/api/request-reset', { email });
       setMessage('Reset email sent! Check your inbox.');
     } catch (err) {
       setMessage(err.response?.data?.message || 'Error sending reset email');
